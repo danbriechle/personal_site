@@ -21,4 +21,14 @@ class HomepageTest < CapybaraTestCase
     assert page.has_content?("About")
     assert_equal 200, page.status_code
   end
+
+  def test_users_can_navigate_to_the_about_page
+    visit '/'
+    click_on "About"
+
+    assert_equal 200, page.status_code
+    assert_equal '/about', current_path
+    assert page.has_content?("About Me!")
+  end
+  
 end
